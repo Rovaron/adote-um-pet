@@ -1,0 +1,19 @@
+{
+  "name": "adoteumpet",
+  "version": "1.0.0",
+  "description": "connect animals to homes",
+  "main": "app.js",
+  "scripts": {
+    "start": "node ./bin/www",
+    "nodemon": "nodemon ./bin/www",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Rovaron",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "cors": "^2.7.1",
+    "express": "^4.14.0",
+    "method-override": "^2.3.6"
+  }
+}
