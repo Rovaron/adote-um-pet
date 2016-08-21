@@ -2,7 +2,7 @@
   "name": "adoteumpet",
   "version": "1.0.0",
   "description": "connect animals to homes",
-  "main": "app.js",
+  "main": "./bin/www",
   "scripts": {
     "start": "node ./bin/www",
     "nodemon": "nodemon ./bin/www",
@@ -12,8 +12,11 @@
   "license": "MIT",
   "dependencies": {
     "body-parser": "^1.15.2",
+    "config": "^1.21.0",
     "cors": "^2.7.1",
+    "debug": "^2.2.0",
     "express": "^4.14.0",
-    "method-override": "^2.3.6"
+    "method-override": "^2.3.6",
+    "mongojs": "^0.18.2"
   }
 }

@@ -1,24 +1,18 @@
 var express = require('express'),
     router = express.Router();
 
-router.get('/', function(request, response){
-    response.send('get all dogs');
-})
+var mongo = require('../db/mongo');
+var DogModel = require('../models/DogModel')(mongo);
+var DogController = require('../controllers/DogController')(DogModel);
 
-router.get('/:_id', function(resquest, response){
-    response.send('get a specific dog by id');
-})
+router.get('/', DogController.getAll.bind(DogController));
 
-router.post('/', function(resquest, response){
-    response.send('create a new dog');
-})
+router.get('/:_id', DogController.getById.bind(DogController));
 
-router.put('/:_id', function(request, response){
-    response.send('update a dog');
-})
+router.post('/', DogController.create.bind(DogController));
 
-router.delete('/:_id', function(request, response){
-    response.send('delete a dog');
-})
+router.put('/:_id', DogController.update.bind(DogController));
+
+router.delete('/:_id', DogController.remove.bind(DogController));
 
 module.exports = router;
