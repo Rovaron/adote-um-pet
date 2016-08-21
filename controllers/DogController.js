@@ -18,6 +18,11 @@ DogController.prototype.getById = function(request, response, next){
         if(error){
             return next(error);
         }
+        if(!data){
+            var error =  new Error('Not Found');
+            error.status = 404;
+            return next(error);
+        }
         response.json(data);
     })
 }

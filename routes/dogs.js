@@ -1,8 +1,8 @@
 var express = require('express'),
     router = express.Router();
 
-var mongo = require('../db/mongo');
-var DogModel = require('../models/DogModel')(mongo);
+var mongoose = require('../db/mongoose');
+var DogModel = require('../models/DogModel')(mongoose);
 var DogController = require('../controllers/DogController')(DogModel);
 
 router.get('/', DogController.getAll.bind(DogController));

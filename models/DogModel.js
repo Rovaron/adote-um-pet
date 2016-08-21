@@ -1,30 +1,48 @@
-function DogModel(mongo){
-    this.mongo = mongo;
+'use strict';
+function DogDAO(model){
+    this.model = model;
 }
 
-DogModel.prototype.find = function(query, callback){
-    this.mongo.collection('dogs').find(query, callback);
+DogDAO.prototype.create = function(data, callback){
+    var model = new this.model(data);
+    model.save(function(err, result){
+        callback(err, result);
+    })
 };
 
-DogModel.prototype.findOne = function(_id, callback){
-    var query = { _id: this.mongo.ObjectId(_id) };
-    this.mongo.collection('dogs').findOne(query, callback);
+DogDAO.prototype.find = function(query, callback){
+    this.model.find(query).exec(callback);
 };
 
-DogModel.prototype.create = function(data, callback){
-    this.mongo.collection('dogs').insert(data, callback);
+DogDAO.prototype.findOne = function(_id, callback){
+    var query = { _id: _id};
+    this.model.findOne(query).exec(callback);
 };
 
-DogModel.prototype.update = function(_id, data, callback){
-    var query = { _id: this.mongo.ObjectId(_id) };
-    this.mongo.collection('dogs').update(query, data, callback);
+DogDAO.prototype.update = function(_id, data, callback){
+    var query = { _id: _id };
+    this.model.update(query, data).exec(function(error, result){
+        callbacl(error, result);
+    });
 };
 
-DogModel.prototype.remove = function(_id, callback){
-    var query = { _id: this.mongo.ObjectId(_id) };
-    this.mongo.collection( 'dogs').remove(query, callback);
+DogDAO.prototype.remove = function(_id, callback){
+    var query = { _id: _id };
+    this.model.remove(query).exec(function(error, result){
+        callback(err, result);
+    });
 };
 
-module.exports = function(mongo) {
-    return new DogModel(mongo);
+module.exports = function(mongoose) {
+    var Dog = mongoose.model('Dog',{
+        name: String,
+        nickname: String,
+        size: String,
+        weight: Number,
+        breeds : [String],
+        age: Number,
+        description: String,
+        color: String
+    });
+    return new DogDAO(Dog);
 }
