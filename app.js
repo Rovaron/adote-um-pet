@@ -1,6 +1,8 @@
 var express = require('express'),
     methodOverride = require('method-override'),
     bodyParser = require('body-parser'),
+    passport = require('passport'),
+    BasicStrategy = require('passport-http').BasicStrategy,
     cors = require('cors'),
     app = express();
 
@@ -26,6 +28,17 @@ app.use(function(request, response, next){
         next();
     }
 })
+
+app.use(passport.initialize());
+passport.use(
+    new BasicStrategy(function(username, password, done){
+        if(username.valueOf() === 'Rovaron' && password.valueOf() === '7488yn2w'){
+            return done(null, true);
+        } else {
+            return done(null, false);
+        }
+    })
+)
 
 //router
 app.use('/', require('./routes'));
