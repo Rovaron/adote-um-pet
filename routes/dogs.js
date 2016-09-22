@@ -5,9 +5,14 @@ var mongoose = require('../db/mongoose');
 var DogModel = require('../models/DogModel')(mongoose);
 var DogController = require('../controllers/DogController')(DogModel);
 
-router.get('/', DogController.getAll.bind(DogController));
+var passport = require('passport');
 
-router.get('/:_id', DogController.getById.bind(DogController));
+
+router.get('/', passport.authenticate('basic', { session: false }),
+DogController.getAll.bind(DogController));
+
+router.get('/:_id', passport.authenticate('basic', { session: false }),
+DogController.getById.bind(DogController));
 
 router.post('/', DogController.create.bind(DogController));
 
