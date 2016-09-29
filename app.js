@@ -32,7 +32,7 @@ app.use(function(request, response, next){
 app.use(passport.initialize());
 passport.use(
     new BasicStrategy(function(username, password, done){
-        if(username.valueOf() === 'admin' && password.valueOf() === '7488yn2w') {
+        if(username.valueOf() === 'Rovaron' && password.valueOf() === '7488yn2w'){
             return done(null, true);
         } else {
             return done(null, false);
