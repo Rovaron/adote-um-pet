@@ -5,5 +5,6 @@
         "server": "localhost",
         "port": 27017,
         "database": "adoteumpet"
-    }
+    },
+    "jwtTokenSecret": "T3quil4 Djuly P4n7er4 Zyr4 Pand0ra Am0ra"
 }
